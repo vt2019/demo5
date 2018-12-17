@@ -15,6 +15,7 @@ pipeline {
     stage('First stage') {
       steps {
         container('s2i') {
+          build . pingworks/demo-builder:2 $RELEASE_NAMESPACE:$RELEASE_VERSION
         }
       }
     }
