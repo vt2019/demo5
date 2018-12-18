@@ -1,12 +1,12 @@
 # Default values for Maven projects.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-namespace: jx
+namespace: 
 domain: vt.k8s-ws.net
 replicaCount: 1
 image:
-  repository: draft
-  tag: dev
+  repository: /jenkinsx-pw1/demo5
+  tag: 
   pullPolicy: IfNotPresent
 service:
   name: demo5

@@ -17,13 +17,16 @@ pipeline {
         container('s2i') {
           sh "s2i build . pingworks/demo-builder:2 ${IMAGE_NAME}:${RELEASE_VERSION}"
           sh "docker push ${IMAGE_NAME}:${RELEASE_VERSION}"
-          
-        }
+          }
       }
     }
     stage('Second stage') {
       steps {
         container('s2i') {
+          dir( "charts/$APP_NAME") {
+            sh "make version"
+            sh "helm upgrade --install --wait --namespace $RELEASE_NAMESPACE $APP_NAME ."
+          }
         }
       }
     }
